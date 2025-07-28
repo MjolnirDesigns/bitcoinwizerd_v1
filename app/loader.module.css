@@ -1,0 +1,59 @@
+.matrixRainContainer {
+  @apply relative w-full h-screen bg-bg-dark overflow-hidden;
+}
+
+.canvas {
+  @apply absolute top-0 left-0 w-full h-full z-0;
+}
+
+.overlayContent {
+  @apply absolute inset-0 flex flex-col items-center justify-center text-center p-4 sm:p-6 z-10;
+}
+
+.choice {
+  @apply mx-auto;
+}
+
+.buttonWrapper {
+  @apply flex flex-row gap-4;
+}
+
+.bluePill {
+  @apply bg-wizerd-blue hover:bg-mystic-blue text-white rounded-full border border-wizerd-blue transition-all duration-300;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.05),
+    rgba(0, 0, 0, 0.1)
+  );
+  box-shadow: 0 4px 8px rgba(0, 51, 255, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.bluePill:hover {
+  @apply brightness-110;
+  box-shadow: 0 6px 12px rgba(0, 51, 255, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.redPill {
+  @apply bg-blood-red hover:bg-crimson-darkred text-white rounded-full border border-blood-red transition-all duration-300;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.05),
+    rgba(0, 0, 0, 0.1)
+  );
+  box-shadow: 0 4px 8px rgba(195, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.redPill:hover {
+  @apply brightness-110;
+  box-shadow: 0 6px 12px rgba(195, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.screen {
+  @apply absolute inset-0 flex items-center justify-center z-20 bg-bg-dark/90;
+}
+
+.accessDeniedContainer {
+  @apply w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto;
+}
+
+.loopVideo {
+  @apply w-full h-auto rounded-lg object-contain;
+}

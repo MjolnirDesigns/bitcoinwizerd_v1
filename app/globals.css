@@ -1,0 +1,350 @@
+/* app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --crown-chakra: #8400ff;
+    --mystic-blue: #0033ff;
+    --wizerd-blue: #33ccff;
+    --alien-green: #33e000;
+    --cyber-yellow: #ffff00;
+    --bitcoin-light: #ffbb00;
+    --bitcoin-orange: #ff9900;
+    --bitcoin-dark: #ff7700;
+    --punk-pink: #ff33cc;
+    --blood-red: #d90000;
+    --crimson-darkred: #880000;
+    --storm-grey: #919191;
+    --wizerd-grey: #393939;
+    --wizerd-darkgrey: #2b2b2b;
+    --wizerd-darkestgrey: #171717;
+    --bg-dark: #1c1c1c;
+    --background: 240 9% 11%;
+    --foreground: 240 10% 94%;
+    --card: 240 9% 14%;
+    --card-foreground: 240 10% 94%;
+    --popover: 240 9% 14%;
+    --popover-foreground: 240 10% 94%;
+    --primary: 240 9% 22%;
+    --primary-foreground: 240 10% 94%;
+    --secondary: 240 6% 25%;
+    --secondary-foreground: 240 10% 94%;
+    --muted: 240 6% 25%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 6% 25%;
+    --accent-foreground: 240 10% 94%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 240 10% 94%;
+    --border: 240 6% 20%;
+    --input: 240 6% 20%;
+    --ring: 240 9% 22%;
+    --focus: 240 9% 22%;
+    --info: var(--wizerd-blue);
+    --success: var(--alien-green);
+    --failure: var(--blood-red);
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 9% 5%;
+    --foreground: 240 10% 98%;
+    --card: 240 9% 14%;
+    --card-foreground: 240 10% 94%;
+    --popover: 240 9% 14%;
+    --popover-foreground: 240 10% 94%;
+    --primary: 240 9% 22%;
+    --primary-foreground: 240 10% 94%;
+    --secondary: 240 6% 25%;
+    --secondary-foreground: 240 10% 94%;
+    --muted: 240 6% 25%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 6% 25%;
+    --accent-foreground: 240 10% 94%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 240 10% 94%;
+    --border: 240 6% 20%;
+    --input: 240 6% 20%;
+    --ring: 240 9% 22%;
+    --focus: 240 9% 18%;
+    --info: var(--wizerd-blue);
+    --success: var(--alien-green);
+    --failure: var(--blood-red);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    min-height: 100vh;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  button,
+  [type='button'],
+  [type='reset'],
+  [type='submit'] {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80 disabled:bg-primary/50 disabled:cursor-not-allowed;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: hsl(var(--background));
+      color: hsl(var(--foreground));
+    }
+  }
+}
+
+@layer components {
+  /* Sectional Themes */
+  .theme-crown-chakra {
+    --brand: var(--crown-chakra);
+    --brand-foreground: #ffffff;
+    --primary: var(--brand);
+    --ring: var(--brand);
+    --light: var(--brand);
+    --light-foreground: var(--brand-foreground);
+  }
+
+  .theme-blood-red {
+    --brand: var(--blood-red);
+    --brand-foreground: #ffffff;
+    --primary: var(--brand);
+    --ring: var(--brand);
+    --light: var(--brand);
+    --light-foreground: var(--brand-foreground);
+  }
+
+  .theme-bitcoin-orange {
+    --brand: var(--bitcoin-orange);
+    --brand-foreground: #ffffff;
+    --primary: var(--brand);
+    --ring: var(--brand);
+    --light: var(--brand);
+    --light-foreground: var(--brand-foreground);
+  }
+
+  .theme-cyber-yellow {
+    --brand: var(--cyber-yellow);
+    --brand-foreground: #000000;
+    --primary: var(--brand);
+    --ring: var(--brand);
+    --light: var(--brand);
+    --light-foreground: var(--brand-foreground);
+  }
+
+  .theme-alien-green {
+    --brand: var(--alien-green);
+    --brand-foreground: #000000;
+    --primary: var(--brand);
+    --ring: var(--brand);
+    --light: var(--brand);
+    --light-foreground: var(--brand-foreground);
+  }
+
+  .theme-wizerd-blue {
+    --brand: var(--wizerd-blue);
+    --brand-foreground: #000000;
+    --primary: var(--brand);
+    --ring: var(--brand);
+    --light: var(--brand);
+    --light-foreground: var(--brand-foreground);
+  }
+
+  .theme-mystic-blue {
+    --brand: var(--mystic-blue);
+    --brand-foreground: #ffffff;
+    --primary: var(--brand);
+    --ring: var(--brand);
+    --light: var(--brand);
+    --light-foreground: var(--brand-foreground);
+  }
+
+  .theme-punk-pink {
+    --brand: var(--punk-pink);
+    --brand-foreground: #ffffff;
+    --primary: var(--brand);
+    --ring: var(--brand);
+    --light: var(--brand);
+    --light-foreground: var(--brand-foreground);
+  }
+}
+
+@layer utilities {
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* Explicit border-color utilities */
+  .border-wizerd-blue {
+    border-color: var(--wizerd-blue);
+  }
+
+  .border-alien-green {
+    border-color: var(--alien-green);
+  }
+
+  .border-cyber-yellow {
+    border-color: var(--cyber-yellow);
+  }
+
+  .border-bitcoin-orange {
+    border-color: var(--bitcoin-orange);
+  }
+
+  /* Fire flicker animation */
+  .animate-flicker {
+    animation: flicker 1.5s infinite alternate ease-in-out;
+  }
+}
+
+@font-face {
+  font-family: 'Geo';
+  src: url('/assets/fonts/Geo.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/assets/fonts/JetBrainsMono.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('/assets/fonts/Ubuntu.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Spotlight Animation */
+@keyframes spotlight {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  50% { transform: translate(-10%, -10%) scale(1.1); opacity: 0.7; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+}
+
+.animate-spotlight {
+  animation: spotlight 6s infinite ease-in-out;
+}
+
+.glow-effect {
+    box-shadow: 0 0 20px var(--glow-color, #ff33cc), 0 0 10px var(--glow-color, #ff33cc);
+  }
+
+/* Fire Flicker Animation */
+@keyframes flicker {
+  0% { transform: scale(1) rotate(0deg); opacity: 1; }
+  20% { transform: scale(1.1) rotate(5deg); opacity: 0.8; }
+  40% { transform: scale(0.9) rotate(-5deg); opacity: 0.9; }
+  60% { transform: scale(1.05) rotate(3deg); opacity: 0.85; }
+  80% { transform: scale(0.95) rotate(-3deg); opacity: 0.9; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.custom-projects-shadow {
+  box-shadow: 0 4px 15px rgba(51, 204, 255, 0.3), 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1em;
+}
+
+/* Styles for the mission header container */
+.about-header-container {
+  border: 1px solid #ff33cc;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgb(40,40,40)' fill-opacity='0.2' viewBox='0 0 100 169.5'%3E%3Cpolygon points='50,34.75 93.5,59.75 93.5,109.75 50,134.75 6.5,109.75 6.5,59.75'/%3E%3Cpolygon points='0,-50 43.5,-25 43.5,25 0,50 -43.5,25 -43.5,-25'/%3E%3Cpolygon points='100,-50 143.5,-25 143.5,25 100,50 56.5,25 56.5,-25'/%3E%3Cpolygon points='0,119.5 43.5,144.5 43.5,194.5 0,219.5 -43.5,194.5 -43.5,144.5'/%3E%3Cpolygon points='100,119.5 143.5,144.5 143.5,194.5 100,219.5 56.5,194.5 56.5,144.5'/%3E%3C/svg%3E");
+  background-size: 32px;
+}
+
+/* Styles for the milestone dot */
+.about-milestone-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Milestone dot colors */
+.about-milestone-dot-2023 {
+  background-color: #ff9900;
+  box-shadow: 0 0 10px #ff9900;
+}
+
+.about-milestone-dot-2024 {
+  background-color: #ccff00;
+  box-shadow: 0 0 10px #ccff00;
+}
+
+.about-milestone-dot-2025 {
+  background-color: #33e000;
+  box-shadow: 0 0 10px #33e000;
+}
+
+.about-milestone-dot-2026 {
+  background-color: #33ccff;
+  box-shadow: 0 0 10px #33ccff;
+}
+
+/* Styles for the DevKit header container */
+.devkit-header-container {
+  border: 1px solid #ff33cc;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgb(40,40,40)' fill-opacity='0.2' viewBox='0 0 100 169.5'%3E%3Cpolygon points='50,34.75 93.5,59.75 93.5,109.75 50,134.75 6.5,109.75 6.5,59.75'/%3E%3Cpolygon points='0,-50 43.5,-25 43.5,25 0,50 -43.5,25 -43.5,-25'/%3E%3Cpolygon points='100,-50 143.5,-25 143.5,25 100,50 56.5,25 56.5,-25'/%3E%3Cpolygon points='0,119.5 43.5,144.5 43.5,194.5 0,219.5 -43.5,194.5 -43.5,144.5'/%3E%3Cpolygon points='100,119.5 143.5,144.5 143.5,194.5 100,219.5 56.5,194.5 56.5,144.5'/%3E%3C/svg%3E");
+  background-size: 32px;
+}
+
+
+/* Styles for the Projects header container */
+.projects-header-container {
+  border: 1px solid #ff33cc;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgb(40,40,40)' fill-opacity='0.2' viewBox='0 0 100 169.5'%3E%3Cpolygon points='50,34.75 93.5,59.75 93.5,109.75 50,134.75 6.5,109.75 6.5,59.75'/%3E%3Cpolygon points='0,-50 43.5,-25 43.5,25 0,50 -43.5,25 -43.5,-25'/%3E%3Cpolygon points='100,-50 143.5,-25 143.5,25 100,50 56.5,25 56.5,-25'/%3E%3Cpolygon points='0,119.5 43.5,144.5 43.5,194.5 0,219.5 -43.5,194.5 -43.5,144.5'/%3E%3Cpolygon points='100,119.5 143.5,144.5 143.5,194.5 100,219.5 56.5,194.5 56.5,144.5'/%3E%3C/svg%3E");
+  background-size: 32px;
+}
+
+
+.header-container {
+  border: 1px solid #ff33cc;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgb(40,40,40)' fill-opacity='0.2' viewBox='0 0 100 169.5'%3E%3Cpolygon points='50,34.75 93.5,59.75 93.5,109.75 50,134.75 6.5,109.75 6.5,59.75'/%3E%3Cpolygon points='0,-50 43.5,-25 43.5,25 0,50 -43.5,25 -43.5,-25'/%3E%3Cpolygon points='100,-50 143.5,-25 143.5,25 100,50 56.5,25 56.5,-25'/%3E%3Cpolygon points='0,119.5 43.5,144.5 43.5,194.5 0,219.5 -43.5,194.5 -43.5,144.5'/%3E%3Cpolygon points='100,119.5 143.5,144.5 143.5,194.5 100,219.5 56.5,194.5 56.5,144.5'/%3E%3C/svg%3E");
+  background-size: 32px;
+}
+
+/* Marquee container styles */
+.marquee-container {
+  display: flex;
+  white-space: nowrap;
+}
+
+/* Logo wrapper to set dynamic width */
+.marquee-logo-wrapper {
+  flex-shrink: 0;
+}
