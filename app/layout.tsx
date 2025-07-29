@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import { Inter, Ubuntu } from 'next/font/google';
-import { Providers } from "./providers"; // Add this import
+import { Providers } from "./providers";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth"; // Adjust path (e.g., ../../lib/auth)
 import './globals.css';
 
 const inter = Inter({
@@ -15,7 +17,6 @@ const ubuntu = Ubuntu({
   weight: ['400', '700'],
 });
 
-// Custom Geo and JetBrains Mono are loaded via globals.css
 export const metadata: Metadata = {
   title: {
     default: 'BitcoinWizerd',
@@ -57,11 +58,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession(authOptions);
+
   return (
     <html
       lang="en-US"
@@ -81,7 +84,7 @@ export default function RootLayout({
         <link rel="preload" href="/assets/fonts/JetBrainsMono.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
       </head>
       <body className="min-h-screen min-w-[320px] bg-background text-foreground font-sans antialiased">
-        <Providers> {/* Use the new Providers component here */}
+        <Providers session={session}>
           <main className="flex-grow w-full">
             {children}
           </main>
