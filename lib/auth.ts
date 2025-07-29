@@ -4,6 +4,16 @@ import GoogleProvider from 'next-auth/providers/google';
 import TwitterProvider from 'next-auth/providers/twitter';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
+// Debug logging for environment variables
+console.log('GITHUB_CLIENT_ID:', process.env.GITHUB_CLIENT_ID);
+console.log('GITHUB_CLIENT_SECRET:', process.env.GITHUB_CLIENT_SECRET);
+console.log('GOOGLE_CLIENT_ID:', process.env.GOOGLE_CLIENT_ID);
+console.log('GOOGLE_CLIENT_SECRET:', process.env.GOOGLE_CLIENT_SECRET);
+console.log('TWITTER_CLIENT_ID:', process.env.TWITTER_CLIENT_ID);
+console.log('TWITTER_CLIENT_SECRET:', process.env.TWITTER_CLIENT_SECRET);
+console.log('NEXTAUTH_URL:', process.env.NEXTAUTH_URL);
+console.log('NEXTAUTH_SECRET:', process.env.NEXTAUTH_SECRET);
+
 declare module "next-auth" {
   interface Session {
     user: {
@@ -35,7 +45,7 @@ async function getUserSubscription(userId: string): Promise<Subscription> {
     'github|123': { isPremium: true, tier: 'Premium' },
     'google|456': { isPremium: false, tier: 'Pleb' },
     'twitter|789': { isPremium: true, tier: 'Standard' },
-    // Add mock for credentials if needed, e.g., 'credentials|user1'
+    'credentials|test': { isPremium: false, tier: 'Pleb' }, // Added for credentials provider
   };
   return mockSubscriptions[userId] || { isPremium: false, tier: 'Pleb' };
 }
@@ -69,9 +79,9 @@ export const authOptions: NextAuthOptions = {
             id: 'credentials|test',
             name: 'Test User',
             email: 'test@example.com',
-            isPremium: false, // or true, depending on your logic
-            tier: 'Pleb' as const,     // or 'Standard' | 'Premium' | 'Maxi'
-            image: null
+            isPremium: false,
+            tier: 'Pleb' as const,
+            image: null,
           };
           return user;
         }

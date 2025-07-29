@@ -20,9 +20,13 @@ export default function Login() {
     });
 
     if (result?.error) {
-      setError(result.error);
+      setError(`Credentials error: ${result.error}`);
+      console.error('Credentials sign-in error:', result.error);
     } else if (result?.ok) {
       window.location.href = '/app/home'; // Fallback redirect
+    } else {
+      setError('Authentication failed');
+      console.error('Credentials sign-in failed:', result);
     }
   };
 
@@ -89,7 +93,7 @@ export default function Login() {
               whileHover={{ scale: 1.05 }}
               onClick={() => {
                 console.log("Signing in with GitHub");
-                signIn('github', { callbackUrl: '/app/home' });
+                signIn('github', { callbackUrl: '/app/home' }).catch((err) => console.error("GitHub sign-in error:", err));
               }}
             >
               Sign in with GitHub
@@ -99,7 +103,7 @@ export default function Login() {
               whileHover={{ scale: 1.05 }}
               onClick={() => {
                 console.log("Signing in with Google");
-                signIn('google', { callbackUrl: '/app/home' });
+                signIn('google', { callbackUrl: '/app/home' }).catch((err) => console.error("Google sign-in error:", err));
               }}
             >
               Sign in with Google
@@ -108,11 +112,11 @@ export default function Login() {
               className="w-full py-2 bg-storm-grey text-bg-dark rounded-lg hover:bg-bitcoin-orange hover:text-white transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               onClick={() => {
-                console.log("Signing in with X");
-                signIn('x', { callbackUrl: '/app/home' });
+                console.log("Signing in with Twitter");
+                signIn('twitter', { callbackUrl: '/app/home' }).catch((err) => console.error("Twitter sign-in error:", err));
               }}
             >
-              Sign in with X
+              Sign in with X (Twitter)
             </motion.button>
           </div>
         </div>
