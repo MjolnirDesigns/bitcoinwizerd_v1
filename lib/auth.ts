@@ -128,8 +128,12 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
     async redirect({ url, baseUrl }) {
-      console.log('Redirect callback - url:', url, 'baseUrl:', baseUrl); // Debug redirect
-      return url.startsWith("/") ? `${baseUrl}/app/home` : baseUrl;
+      console.log('Redirect callback - url:', url, 'baseUrl:', baseUrl);
+      // Force redirect to /app/home if authenticated
+      if (url.includes('/api/auth/callback/')) {
+        return `${baseUrl}/app/home`;
+      }
+      return url.startsWith("/") ? `${baseUrl}${url}` : baseUrl;
     },
   },
   session: {
