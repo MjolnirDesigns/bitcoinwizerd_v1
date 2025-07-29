@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = 'force-dynamic'; // Add this to make the page dynamic
+
 import { useSession } from "next-auth/react";
 import Hero from "@/components/ui/Hero";
 import Navbar from "@/components/ui/Navbar";
