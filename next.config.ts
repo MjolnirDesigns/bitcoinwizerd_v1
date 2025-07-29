@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    unoptimized: true, // Keep if needed, but consider optimizing later
+    unoptimized: true,
     domains: [
       "www.solosatoshi.com",
       "www.dcentwallet.com",
@@ -10,7 +10,7 @@ const nextConfig = {
     ],
   },
   eslint: {
-    ignoreDuringBuilds: true, // Keep for now, remove post-launch
+    ignoreDuringBuilds: true,
   },
   env: {
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
@@ -21,6 +21,15 @@ const nextConfig = {
     TWITTER_CLIENT_SECRET: process.env.TWITTER_CLIENT_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+  },
+  webpack: (config: import('webpack').Configuration, { isServer }: { isServer: boolean }) => {
+    if (!isServer) {
+      console.log('Client-side env vars:', {
+        GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+        NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+      });
+    }
+    return config;
   },
 };
 
