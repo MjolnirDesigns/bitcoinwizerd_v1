@@ -1,8 +1,5 @@
-"use client";
-
-export const dynamic = 'force-dynamic'; // Add this to make the page dynamic
-
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth"; // Adjust path (e.g., ../../lib/auth)
 import Hero from "@/components/ui/Hero";
 import Navbar from "@/components/ui/Navbar";
 import BitcoinSection from "@/components/sections/BitcoinSection";
@@ -15,15 +12,15 @@ import RacerLine from "@/components/animations/RacerLine";
 import { Footer } from "@/components/ui/Footer";
 import "tailwindcss/tailwind.css";
 
-export default function HomePage() {
-  const { data: session, status } = useSession();
-
-  if (status === "loading") {
-    return <div className="min-h-screen bg-bg-dark flex items-center justify-center">Loading...</div>;
-  }
+export default async function HomePage() {
+  const session = await getServerSession(authOptions);
 
   if (!session) {
-    return <div className="min-h-screen bg-bg-dark flex items-center justify-center">Please log in to access this page.</div>;
+    return (
+      <div className="min-h-screen bg-bg-dark flex items-center justify-center">
+        Please log in to access this page.
+      </div>
+    );
   }
 
   return (
