@@ -5,14 +5,14 @@ import TwitterProvider from 'next-auth/providers/twitter';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 // Debug logging for environment variables
-console.log('GITHUB_CLIENT_ID:', process.env.GITHUB_CLIENT_ID);
-console.log('GITHUB_CLIENT_SECRET:', process.env.GITHUB_CLIENT_SECRET);
-console.log('GOOGLE_CLIENT_ID:', process.env.GOOGLE_CLIENT_ID);
-console.log('GOOGLE_CLIENT_SECRET:', process.env.GOOGLE_CLIENT_SECRET);
-console.log('TWITTER_CLIENT_ID:', process.env.TWITTER_CLIENT_ID);
-console.log('TWITTER_CLIENT_SECRET:', process.env.TWITTER_CLIENT_SECRET);
-console.log('NEXTAUTH_URL:', process.env.NEXTAUTH_URL);
-console.log('NEXTAUTH_SECRET:', process.env.NEXTAUTH_SECRET);
+console.log('Auth setup - GITHUB_CLIENT_ID:', process.env.GITHUB_CLIENT_ID);
+console.log('Auth setup - GITHUB_CLIENT_SECRET:', process.env.GITHUB_CLIENT_SECRET);
+console.log('Auth setup - GOOGLE_CLIENT_ID:', process.env.GOOGLE_CLIENT_ID);
+console.log('Auth setup - GOOGLE_CLIENT_SECRET:', process.env.GOOGLE_CLIENT_SECRET);
+console.log('Auth setup - TWITTER_CLIENT_ID:', process.env.TWITTER_CLIENT_ID);
+console.log('Auth setup - TWITTER_CLIENT_SECRET:', process.env.TWITTER_CLIENT_SECRET);
+console.log('Auth setup - NEXTAUTH_URL:', process.env.NEXTAUTH_URL);
+console.log('Auth setup - NEXTAUTH_SECRET:', process.env.NEXTAUTH_SECRET);
 
 declare module "next-auth" {
   interface Session {
@@ -45,7 +45,7 @@ async function getUserSubscription(userId: string): Promise<Subscription> {
     'github|123': { isPremium: true, tier: 'Premium' },
     'google|456': { isPremium: false, tier: 'Pleb' },
     'twitter|789': { isPremium: true, tier: 'Standard' },
-    'credentials|test': { isPremium: false, tier: 'Pleb' }, // Added for credentials provider
+    'credentials|test': { isPremium: false, tier: 'Pleb' },
   };
   return mockSubscriptions[userId] || { isPremium: false, tier: 'Pleb' };
 }
@@ -55,14 +55,29 @@ export const authOptions: NextAuthOptions = {
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID ?? '',
       clientSecret: process.env.GITHUB_CLIENT_SECRET ?? '',
+      authorization: {
+        params: {
+          redirect_uri: 'https://www.bitcoinwizerd.com/api/auth/callback/github',
+        },
+      },
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? '',
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
+      authorization: {
+        params: {
+          redirect_uri: 'https://www.bitcoinwizerd.com/api/auth/callback/google',
+        },
+      },
     }),
     TwitterProvider({
       clientId: process.env.TWITTER_CLIENT_ID ?? '',
       clientSecret: process.env.TWITTER_CLIENT_SECRET ?? '',
+      authorization: {
+        params: {
+          redirect_uri: 'https://www.bitcoinwizerd.com/api/auth/callback/twitter',
+        },
+      },
     }),
     CredentialsProvider({
       name: 'Credentials',
@@ -73,7 +88,6 @@ export const authOptions: NextAuthOptions = {
       async authorize(
         credentials: Record<"username" | "password", string> | undefined
       ) {
-        // Mock authorization (replace with real logic)
         if (credentials?.username === 'test' && credentials?.password === 'test') {
           const user = {
             id: 'credentials|test',
@@ -114,6 +128,7 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
     async redirect({ url, baseUrl }) {
+      console.log('Redirect callback - url:', url, 'baseUrl:', baseUrl); // Debug redirect
       return url.startsWith("/") ? `${baseUrl}/app/home` : baseUrl;
     },
   },

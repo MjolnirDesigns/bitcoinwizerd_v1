@@ -23,7 +23,7 @@ export default function Login() {
       setError(`Credentials error: ${result.error}`);
       console.error('Credentials sign-in error:', result.error);
     } else if (result?.ok) {
-      window.location.href = '/app/home'; // Fallback redirect
+      window.location.href = '/app/home';
     } else {
       setError('Authentication failed');
       console.error('Credentials sign-in failed:', result);
@@ -121,6 +121,6 @@ export default function Login() {
           </div>
         </div>
       </motion.div>
-    </div>
-  );
+  </div>
+);
 }
