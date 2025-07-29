@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { Inter, Ubuntu } from 'next/font/google';
+import { SessionProvider } from "next-auth/react"; // Add this import
 import './globals.css';
 
 const inter = Inter({
@@ -80,9 +81,11 @@ export default function RootLayout({
         <link rel="preload" href="/assets/fonts/JetBrainsMono.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
       </head>
       <body className="min-h-screen min-w-[320px] bg-background text-foreground font-sans antialiased">
-        <main className="flex-grow w-full">
-          {children}
-        </main>
+        <SessionProvider> {/* Add SessionProvider here to wrap all children */}
+          <main className="flex-grow w-full">
+            {children}
+          </main>
+        </SessionProvider>
       </body>
     </html>
   );
