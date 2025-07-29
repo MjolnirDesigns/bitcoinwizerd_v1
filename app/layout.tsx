@@ -76,8 +76,6 @@ export default async function RootLayout({
         <meta name="application-name" content="BitcoinWizerd" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="preload" href="/favicon.ico" as="image" />
-        <link rel="manifest" href="/site.webmanifest" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preload" href="/assets/fonts/Geo.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />

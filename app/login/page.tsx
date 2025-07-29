@@ -26,10 +26,9 @@ export default function Login() {
     }
   };
 
-  // Redirect if already logged in
   if (session) {
     window.location.href = '/app/home';
-    return null; // Prevent render while redirecting
+    return null;
   }
 
   return (
@@ -88,23 +87,32 @@ export default function Login() {
             <motion.button
               className="w-full py-2 bg-storm-grey text-bg-dark rounded-lg hover:bg-bitcoin-orange hover:text-white transition-all duration-300"
               whileHover={{ scale: 1.05 }}
-              onClick={() => signIn('github', { callbackUrl: '/app/home' })}
+              onClick={() => {
+                console.log("Signing in with GitHub");
+                signIn('github', { callbackUrl: '/app/home' });
+              }}
             >
               Sign in with GitHub
             </motion.button>
             <motion.button
               className="w-full py-2 bg-storm-grey text-bg-dark rounded-lg hover:bg-bitcoin-orange hover:text-white transition-all duration-300"
               whileHover={{ scale: 1.05 }}
-              onClick={() => signIn('google', { callbackUrl: '/app/home' })}
+              onClick={() => {
+                console.log("Signing in with Google");
+                signIn('google', { callbackUrl: '/app/home' });
+              }}
             >
               Sign in with Google
             </motion.button>
             <motion.button
               className="w-full py-2 bg-storm-grey text-bg-dark rounded-lg hover:bg-bitcoin-orange hover:text-white transition-all duration-300"
               whileHover={{ scale: 1.05 }}
-              onClick={() => signIn('twitter', { callbackUrl: '/app/home' })}
+              onClick={() => {
+                console.log("Signing in with X");
+                signIn('x', { callbackUrl: '/app/home' });
+              }}
             >
-              Sign in with X (Twitter)
+              Sign in with X
             </motion.button>
           </div>
         </div>
