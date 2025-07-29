@@ -1,11 +1,12 @@
 'use client';
 
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 export default function Login() {
+  const { data: session } = useSession();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -19,11 +20,17 @@ export default function Login() {
     });
 
     if (result?.error) {
-      setError('Invalid credentials');
-    } else {
-      window.location.href = '/app/home'; // Redirect to home on success
+      setError(result.error);
+    } else if (result?.ok) {
+      window.location.href = '/app/home'; // Fallback redirect
     }
   };
+
+  // Redirect if already logged in
+  if (session) {
+    window.location.href = '/app/home';
+    return null; // Prevent render while redirecting
+  }
 
   return (
     <div className="fixed inset-0 bg-bg-dark/80 flex items-center justify-center z-50">
@@ -95,9 +102,9 @@ export default function Login() {
             <motion.button
               className="w-full py-2 bg-storm-grey text-bg-dark rounded-lg hover:bg-bitcoin-orange hover:text-white transition-all duration-300"
               whileHover={{ scale: 1.05 }}
-              onClick={() => signIn('x', { callbackUrl: '/app/home' })}
+              onClick={() => signIn('twitter', { callbackUrl: '/app/home' })}
             >
-              Sign in with X
+              Sign in with X (Twitter)
             </motion.button>
           </div>
         </div>
