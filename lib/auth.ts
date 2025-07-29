@@ -1,10 +1,8 @@
-// lib/auth.ts
 import type { NextAuthOptions } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import TwitterProvider from 'next-auth/providers/twitter';
 
-// Extend NextAuth types to include custom user properties
 declare module "next-auth" {
   interface Session {
     user: {
@@ -32,7 +30,6 @@ interface Subscription {
 }
 
 async function getUserSubscription(userId: string): Promise<Subscription> {
-  // Replace with Clover API or database query
   const mockSubscriptions: { [key: string]: Subscription } = {
     'github|123': { isPremium: true, tier: 'Premium' },
     'google|456': { isPremium: false, tier: 'Pleb' },
@@ -44,18 +41,19 @@ async function getUserSubscription(userId: string): Promise<Subscription> {
 export const authOptions: NextAuthOptions = {
   providers: [
     GitHubProvider({
-      clientId: process.env.GITHUB_ID!,
-      clientSecret: process.env.GITHUB_SECRET!,
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID!,
-      clientSecret: process.env.GOOGLE_SECRET!,
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
     TwitterProvider({
-      clientId: process.env.TWITTER_ID!,
-      clientSecret: process.env.TWITTER_SECRET!,
+      clientId: process.env.TWITTER_CLIENT_ID!,
+      clientSecret: process.env.TWITTER_CLIENT_SECRET!,
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET!,
   pages: {
     signIn: '/login',
   },
@@ -78,6 +76,9 @@ export const authOptions: NextAuthOptions = {
         session.user.tier = token.tier as 'Pleb' | 'Standard' | 'Premium' | 'Maxi';
       }
       return session;
+    },
+    async redirect({ url, baseUrl }) {
+      return url.startsWith("/") ? `${baseUrl}/app/home` : baseUrl;
     },
   },
   session: {
