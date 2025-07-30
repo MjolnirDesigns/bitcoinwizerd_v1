@@ -1,3 +1,4 @@
+// scripts/build-no-types.js
 import { spawn } from 'child_process';
 const build = spawn('next', ['build'], { stdio: 'inherit' });
 
