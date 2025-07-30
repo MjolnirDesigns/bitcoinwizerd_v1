@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, AnimatePresence } from "framer-motion";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { Menu, X } from "lucide-react";
+import { Menu, X } from "@lucide-react";
 import Link from "next/link";
 import { navItems } from "@/data/index";
 
