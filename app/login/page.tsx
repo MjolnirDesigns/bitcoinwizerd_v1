@@ -4,6 +4,7 @@ import { signIn, useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import Link from 'next/link'; // Import Link for navigation
 
 export default function Login() {
   const { data: session } = useSession();
@@ -118,6 +119,12 @@ export default function Login() {
             >
               Sign in with X (Twitter)
             </motion.button>
+          </div>
+          {/* New User? Register link with matching styling */}
+          <div className="mt-4">
+            <Link href="/register" className="text-wizerd-blue hover:text-bitcoin-orange transition-colors duration-300">
+              New User? Register
+            </Link>
           </div>
         </div>
       </motion.div>

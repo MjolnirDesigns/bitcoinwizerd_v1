@@ -109,6 +109,7 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async jwt({ token, user, account }) {
+      console.log('JWT callback - token:', token, 'user:', user, 'account:', account);
       if (account) {
         const provider = account.provider;
         const providerId = account.providerAccountId || user?.id;
@@ -120,6 +121,7 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
     async session({ session, token }) {
+      console.log('Session callback - session:', session, 'token:', token);
       if (session.user) {
         session.user.id = token.sub as string;
         session.user.isPremium = token.isPremium as boolean;
@@ -129,10 +131,11 @@ export const authOptions: NextAuthOptions = {
     },
     async redirect({ url, baseUrl }) {
       console.log('Redirect callback - url:', url, 'baseUrl:', baseUrl);
-      // Force redirect to /app/home if authenticated
-      if (url.includes('/api/auth/callback/')) {
+      // Force redirect to /app/home after callback or error
+      if (url.includes('/api/auth/callback/') || url.includes('error=')) {
         return `${baseUrl}/app/home`;
       }
+      // Handle other navigation
       return url.startsWith("/") ? `${baseUrl}${url}` : baseUrl;
     },
   },
