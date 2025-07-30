@@ -4,7 +4,7 @@ import { signIn, useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import Link from 'next/link'; // Import Link for navigation
+import Link from 'next/link';
 
 export default function Login() {
   const { data: session } = useSession();
