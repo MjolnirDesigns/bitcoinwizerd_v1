@@ -7,6 +7,11 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { navItems } from "@/data/index";
 
+interface NavItem {
+  name: string;
+  link: string;
+}
+
 const Navbar: React.FC = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -31,13 +36,11 @@ const Navbar: React.FC = () => {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // Hamburger icon animation
   const hamburgerVariants = {
     closed: { rotate: 0 },
     open: { rotate: 90 },
   };
 
-  // Dropdown menu animation
   const menuVariants = {
     closed: {
       opacity: 0,
@@ -66,7 +69,6 @@ const Navbar: React.FC = () => {
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.3 }}
     >
-      {/* Logo */}
       <div className="flex-shrink-0">
         <Link href="/#hero" className="font-ubuntu font-bold text-lg sm:text-xl md:text-2xl">
           <span className="text-bitcoin-orange">₿itcoin</span>
@@ -74,9 +76,8 @@ const Navbar: React.FC = () => {
         </Link>
       </div>
 
-      {/* Desktop Nav Links */}
       <div className="hidden md:flex flex-grow justify-center space-x-2 sm:space-x-4">
-        {navItems.map((item) => (
+        {navItems.map((item: NavItem) => (
           <Link
             key={item.name}
             href={item.link}
@@ -87,9 +88,7 @@ const Navbar: React.FC = () => {
         ))}
       </div>
 
-      {/* Right Side: Search, Hamburger, Sign In, Get Started */}
       <div className="flex items-center space-x-2 sm:space-x-4">
-        {/* Search Bubble */}
         <motion.div
           className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 cursor-pointer"
           whileHover={{ scale: 1.1 }}
@@ -97,7 +96,6 @@ const Navbar: React.FC = () => {
           <MagnifyingGlassIcon className="h-5 w-5 text-gray-300" />
         </motion.div>
 
-        {/* Hamburger Icon (Mobile) */}
         <motion.button
           className="md:hidden p-2 focus:outline-none"
           onClick={toggleMenu}
@@ -112,7 +110,6 @@ const Navbar: React.FC = () => {
           </motion.div>
         </motion.button>
 
-        {/* Sign In/Out */}
         <button
           onClick={() => setIsSignedIn(!isSignedIn)}
           className="text-wizerd-blue hover:text-cyber-yellow text-sm sm:text-base transition-colors font-ubuntu"
@@ -120,7 +117,6 @@ const Navbar: React.FC = () => {
           {isSignedIn ? "Sign Out" : "Sign In"}
         </button>
 
-        {/* Get Started */}
         <Link href="/get-started">
           <motion.button
             className="px-3 py-1 sm:px-4 sm:py-2 bg-bitcoin-orange text-white rounded-lg hover:bg-cyber-yellow hover:text-black text-sm sm:text-base transition font-ubuntu"
@@ -131,7 +127,6 @@ const Navbar: React.FC = () => {
         </Link>
       </div>
 
-      {/* Dropdown Menu (Mobile) */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -142,7 +137,7 @@ const Navbar: React.FC = () => {
             exit="closed"
           >
             <div className="flex flex-col space-y-2 py-4 px-4">
-              {navItems.map((item) => (
+              {navItems.map((item: NavItem) => (
                 <Link
                   key={item.name}
                   href={item.link}
