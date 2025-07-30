@@ -120,10 +120,10 @@ export default function Login() {
               Sign in with X (Twitter)
             </motion.button>
           </div>
-          {/* New User? Register link with matching styling */}
+          {/* Updated New User prompt */}
           <div className="mt-4">
             <Link href="/register" className="text-wizerd-blue hover:text-bitcoin-orange transition-colors duration-300">
-              New User? Register
+              New to the Wizerd? Join the Blockchain Revolution!
             </Link>
           </div>
         </div>
