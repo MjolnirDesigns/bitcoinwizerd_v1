@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "es2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -13,12 +13,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": ".",
-    "plugins": [{ "name": "next" }],
-    "paths": { "@/*": ["*", "./app/*", "./components/*", "./lib/*"] },
-    "typeRoots": ["./node_modules/@types"], // Simplified to default location
-    "types": ["@types/node", "@types/react", "@types/webpack"]
+    "traceResolution": true, // Ensure this is active
+    "types": ["@types/node", "@types/react", "@types/webpack"],
+    "typeRoots": ["./node_modules/@types"] // Explicitly set typeRoots
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "types/env.d.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
