@@ -123,7 +123,7 @@ export default function Login() {
           {/* Updated New User prompt */}
           <div className="mt-4">
             <Link href="/register" className="text-wizerd-blue hover:text-bitcoin-orange transition-colors duration-300">
-              New to the Wizerd? Join the Blockchain Revolution!
+              New to the Wizerd? Make some Web3 Magic!
             </Link>
           </div>
         </div>
